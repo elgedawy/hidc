@@ -1,0 +1,53 @@
+
+{% extends "layouts/base-rtl.html" %}
+{%load crispy_forms_tags %} 
+{% block title %} الادارة {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+<div class="container">
+   <a class="fa fa-plus btn btn-info btn-md"
+ href="{% url 'addedara' %}"  class="button"><i class="fa fa-plus"></i> اضافة إدارة</a>></a>
+ 
+  <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="DataTables_Table_0_length"><label>عرض <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> سجلات</label></div><div id="DataTables_Table_0_filter" class="dataTables_filter"><label>بحث:<input type="search" class="" placeholder="" aria-controls="DataTables_Table_0"></label></div><table class="data dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">  
+    <div class="row my-4">
+      <div class="col-md-4"></div>
+      <div class="col-md-12">
+          <table class="table bg-white">
+              <thead class="bg-info text-white">
+                  <tr>
+                    <th scope="col">المحافظة</th>
+                    <th scope="col">كود الادارة</th>
+                    <th scope="col">الادارة</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for edara in edara %}
+                  <tr>
+                    <td>{{ edara.govern }}</td>
+                    <td>{{ edara.code }}</td>
+                    <td>{{ edara.name}}</td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+    </div>
+    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="الوحدة: activate to sort column descending" style="width: 363.011px;" aria-sort="ascending">الوحدة</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="مكان العمل: activate to sort column ascending" style="width: 355.011px;">مكان العمل</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="نوع الجهاز: activate to sort column ascending" style="width: 120.011px;">نوع الجهاز</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="اسم الماركة: activate to sort column ascending" style="width: 137.011px;">اسم الماركة</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="اسم الموديل: activate to sort column ascending" style="width: 189.011px;">اسم الموديل</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="التحكم: activate to sort column ascending" style="width: 119.011px;">التحكم</th></tr>
+ 
+                  <a href="/govrenunit/edit/1" style=""><i class="fa fa-edit"></i></a>
+                  <a href="/govrenunit/delete/1" onclick="if(!confirm('هل تود حذف الإدارة؟')) return false;"><i class="fa fa-trash"></i></a>
+              </td>
+          </tr>
+        </tbody>
+  </table><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">عرض 1 الى 10 من 10,387 سجل</div><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><a class="paginate_button previous disabled" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">السابق</a><span><a class="paginate_button current" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button " aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0">3</a><a class="paginate_button " aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0">4</a><a class="paginate_button " aria-controls="DataTables_Table_0" data-dt-idx="5" tabindex="0">5</a><span>…</span><a class="paginate_button " aria-controls="DataTables_Table_0" data-dt-idx="6" tabindex="0">1039</a></span><a class="paginate_button next" aria-controls="DataTables_Table_0" data-dt-idx="7" tabindex="0" id="DataTables_Table_0_next">التالي</a></div></div>
+ </div>
+
+
+{% endblock content %}
+
+

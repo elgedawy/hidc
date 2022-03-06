@@ -1,0 +1,25 @@
+
+{% extends "layouts/base-rtl.html" %}
+{%load crispy_forms_tags %} 
+{% block title %} الادارة {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+<h1>hello form Edara</h1>
+<form method="POST">
+
+   {{ dedara|crispy }}
+   <input class="btn btn-primary btn-block" type="submit" value="حفظ">
+   
+
+</form>
+
+
+
+{% endblock content %}
+
+

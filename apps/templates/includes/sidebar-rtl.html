@@ -1,0 +1,57 @@
+    
+    <head>
+
+      <!-- CSS Files -->
+      <link href="/static/assets/css/material-dashboard-rtl.css?v=2.1.2" rel="stylesheet" />
+      <link href="/static/assets/css/material-dashboard.css?v=1.1" rel="stylesheet" />
+
+    </head>
+
+
+    
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="/static/assets/img/sidebar-1.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+      <div class="logo">
+        <a target="_blank" rel="noopener noreferrer" 
+           href="{% url 'index' %}" class="simple-text logo-normal">
+          الصيانة والدعم الفنى
+        </a>
+      </div>
+      
+      <div class="sidebar-wrapper" data-toggle="collapse">
+          <li class="submenu   ">
+            <a href="#maintainSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+              <i class="fa fa-user">الصيانه</i> </a>
+            <ul  class="collapse list-unstyled" id="maintainSubmenu">
+                <li><a href="{% url 'place' %}"><i class="fa fa-line-chart"></i><span class="willHide">حصر الاجهزه</span></a></li>
+                <li><a href="{% url 'request' %}"><i class="fa fa-wrench"></i><span class="willHide">نموذج الصيانه</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#systemSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class=" fa fa-cog">اعدادات النظام</i></a>
+            <ul class="collapse list-unstyled" id="systemSubmenu">
+                <li><a href="{% url 'governate' %}" ><i class="fa fa-user-circle"></i><span class="willHide">المحافظة</span></a></li>
+                <li><a href="{% url 'edara' %}" ><i class="fa fa-group"></i><span class="willHide">الإدارة</span></a></li>
+                <li><a href="{% url 'unit' %}" ><i class="fa fa-key"></i><span class="willHide">الوحدة</span></a></li>
+                <li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      ===========</li>
+                <li><a href="{% url 'device' %}"><i class="fa fa-cog"></i><span class="willHide">نوع الجهاز</span></a></li>
+                <li><a href="{% url 'mark' %}" ><i class="fa fa-cog"></i><span class="willHide">الماركة</span></a></li>
+                <li><a href="{% url 'model' %}" ><i class="fa fa-cog"></i><span class="willHide">الموديل</span></a></li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ===========</li>
+                <li><a href="{% url '' %}" ><i class="fa fa-cog"></i><span class="willHide">حالة الجهاز</span></a></li>
+                <li><a href="{% url 'personaldata' %}" ><i class="fa fa-cog"></i><span class="willHide">البيانات الشخصية</span></a></li>
+                <li><a href="{% url '' %}" ><i class="fa fa-cog"></i><span class="willHide">اجراءات الصيانه</span></a></li>
+            </ul>
+          </li>
+
+      </div>
+    </div>
+
+
+  

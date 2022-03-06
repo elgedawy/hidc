@@ -1,0 +1,26 @@
+
+{% extends "layouts/base-rtl.html" %}
+{%load crispy_forms_tags %} 
+{% block title %} وحدة {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+<h1>hello form Mark</h1>
+   <form method="POST" class="">
+      <div class="form-group "></div>
+         {% csrf_token %}
+         {{ dmark | crispy}}
+         <button type="submit" class="btn btn-success" >حفظ</button>
+      </div>
+   </form>
+
+</div>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,82 @@
+
+{% extends "layouts/base-rtl.html" %}
+{%load crispy_forms_tags %} 
+{% block title %} الادارة {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+<h1>hello form Personal Data</h1>
+<form method="POST" id="personalForm">
+   {% csrf_token %}
+   {{ dpersonal|crispy }}
+   <input class="btn btn-primary btn-block" type="submit" value="حفظ">
+
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+ 
+
+$('#id_national_id').change(function(){
+
+    var id = $(this).val();
+    $.ajax({
+
+        url : 'ajax/display_name/',
+        data :{
+
+            'id':id
+        },
+
+
+        success: function(data){
+
+                $('#id_name').val(data['name'])
+
+        }
+
+    });
+
+
+
+
+
+});
+
+
+// <script>
+// $("#id_national_id").change(function (e) {
+//    e.preventDefault();
+//    var id = $(this).val();
+//    $.ajax({
+
+//      url: 'ajax/display_name/',
+//      data: {
+//        'id': id
+//      },
+//          success: function (data) {
+//             var name = data['name'];
+//             $('#id_name').val(name);
+//    },
+//          error : function (data) {
+//                var error_message = data['error'];
+//                $('#id_name').val(error_message);
+//    }
+//    });
+// });
+// </script>
+
+
+
+
+
+
+
+
+</script>
+
+{% endblock content %}

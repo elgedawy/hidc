@@ -1,0 +1,53 @@
+
+{% extends "layouts/base-rtl.html" %}
+{%load crispy_forms_tags %} 
+{% block title %} وحدة {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+<h1>hello form addunit</h1>" 
+<form  method="POST" id="unitForm" data-cities-url="{% url 'ajax_load_dists' %}" >
+    {% csrf_token %}
+    {{ addunit }}
+    <div  class="col-md-2">
+    <input class="btn btn-primary btn-block" type="submit" value="حفظ">
+  </div>
+</form>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+  
+    $("#id_governorate").change(function () {
+      var url = $("#unitForm").attr("data-cities-url");  
+      console.log(url)// get the url of the `load_cities` view
+      var governId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'govern': governId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_edara").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+
+        
+      });
+
+      console.log(governId)
+
+    });
+
+
+
+</script>
+
+{% endblock content %}

@@ -1,0 +1,226 @@
+
+{% extends "layouts/base-rtl.html" %}
+{%load crispy_forms_tags %} 
+{% block title %} وحدة {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+<div class="row ">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-primary ">
+          <h4 class="card-title text-center">
+            نموذج الصيانة
+          </h4>
+        </div>
+        <div class="  card-body">
+  
+          <h6 class="card-category">
+              بيانات الجهاز
+          </h6>
+          
+          <br />
+  
+          <form   method="POST" id="requestForm" data-cities-url="{% url 'ajax_load_dists' %}"   data-unit-url="{% url 'ajax_load_unit' %}"  data-place-url="{% url 'ajax_load_place' %}" data-marks-url="{% url 'ajax_load_marks' %}" data-models-url="{% url 'ajax_load_models' %}" data-model_request-url="{% url 'ajax_model_request' %}"  data-marks-url="{% url 'ajax_load_marks' %}">
+              {% csrf_token %}
+              <div class="form-row">
+
+                <div class="form-group col-md-3">المحافظة
+                 {{ requestform.govern|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-3">الإدارة
+                  {{ requestform.edara|as_crispy_field }}
+                 </div>
+                 <div class="form-group col-md-3">الوحدة
+                  {{ requestform.unit|as_crispy_field }}
+                 </div>
+                 <div class="form-group col-md-3">مكان العمل
+                  {{ requestform.place|as_crispy_field }}
+                 </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-3">نوع الجهاز
+                 {{ requestform.device|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-3">الماركة
+                  {{ requestform.mark|as_crispy_field }}
+                 </div>
+                 <div class="form-group col-md-3">الموديل
+                  {{ requestform.model|as_crispy_field }}
+                 </div>
+                   <div class="form-group col-md-3">السريال
+                 {{ requestform.serial|as_crispy_field }}
+                </div>
+              </div>
+              <div class="form-row">
+              
+                <div class="form-group col-md-3">الرقم القومى
+                  {{ requestform.national_id|as_crispy_field }}
+                 </div>
+                 <div class="form-group col-md-3">الاسم
+                  {{ requestform.name|as_crispy_field }}
+                 </div>
+                 <div class="form-group col-md-3">الموبايل
+                  {{ requestform.phone|as_crispy_field }}
+                 </div>
+              </div>
+              <input class="btn btn-primary btn-block  col-md-1 float-left" type="submit" value="حفظ">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+  
+  
+$("#id_govern").change(function () {
+      var url = $("#requestForm").attr("data-cities-url");  
+      var governId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'govern': governId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_edara").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+
+        
+      });
+
+    });
+
+    
+  
+    $("#id_edara").change(function () {
+      var url = $("#requestForm").attr("data-unit-url");  
+      var edaraId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'edara': edaraId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_unit").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+
+        
+      });
+
+    });
+    
+    $("#id_unit").change(function () {
+      var url = $("#requestForm").attr("data-place-url");  
+      var unitId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'place': unitId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          console.log(data)
+          $("#id_place").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+
+        
+      });
+
+    });
+
+
+    $("#id_place").change(function () {
+      var url = $("#requestForm").attr("data-model_request-url");  
+      var url1 = $("#requestForm").attr("data-model_device-url");  
+      var placeId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        url1: url1,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'device': placeId,       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          
+          $("#id_model").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+
+        
+      });
+
+    });
+
+      
+ 
+
+    $("#id_device").change(function () {
+      var url = $("#requestForm").attr("data-marks-url");  
+      var deviceId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'device': deviceId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_mark").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+
+        
+      });
+
+    });
+
+
+
+  
+    
+
+  $('#id_national_id').change(function(){
+
+      var id = $(this).val();
+      $.ajax({
+
+          url : 'ajax/display_name/',
+          data :{
+
+              'id':id
+          },
+
+
+          success: function(data){
+
+                  $('#id_name').val(data['name'])
+                  $('#id_phone').val(data['phone'])
+
+      }
+
+  });
+
+});
+
+
+
+
+</script>
+
+{% endblock content %}

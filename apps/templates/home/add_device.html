@@ -1,0 +1,44 @@
+
+{% extends "layouts/base-rtl.html" %}
+{%load crispy_forms_tags %} 
+{% block title %} وحدة {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+<div class="row ">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">
+            
+          </h4>
+        </div>
+        <div class="card-body">
+  
+          <h6 class="card-category">
+              بيانات الجهاز
+          </h6>
+          
+          <br />
+  
+          <form   method="POST" id="requestForm" data-cities-url="{% url 'ajax_load_dists' %}"   data-unit-url="{% url 'ajax_load_unit' %}"  data-place-url="{% url 'ajax_load_place' %}" data-marks-url="{% url 'ajax_load_marks' %}" data-models-url="{% url 'ajax_load_models' %}" data-model_request-url="{% url 'ajax_model_request' %}"  >
+              {% csrf_token %}
+              {{ device|crispy }}
+            <input class="btn btn-primary btn-block" type="submit" value="حفظ">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}

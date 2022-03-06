@@ -1,0 +1,100 @@
+
+{% extends "layouts/base-rtl.html" %}
+{%load crispy_forms_tags %} 
+{% block title %} وحدة {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+<div class="row ">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">
+            
+          </h4>
+        </div>
+        <div class="card-body">
+  
+          <h6 class="card-category">
+              بيانات الجهاز
+          </h6>
+          
+          <br />
+          <form autocomplete="off" class="appForm clearfix" method="post" enctype="application/x-www-form-urlencoded">
+            <fieldset>
+                <legend>بيانات الجهاز</legend>    
+                    <div class="input_wrapper_other padding border n20 select">
+                        <select required="" name="DistId" id="DistId">
+                            <option value="">الإدارة</option>
+                                                    <option value="0">مديرية الشئون الصحية ببنى سويف</option>
+                                                    <option value="1">الواسطى</option>
+                                                    <option value="2">ناصر</option>
+                                                    <option value="3">بنى سويف</option>
+                                                    <option value="4">إهناسيا</option>
+                                                    <option value="5">ببا</option>
+                                                    <option value="6">الفشن</option>
+                                                    <option value="7">سمسطا</option>
+                                                    <option value="8">مديرية الصحة والسكان</option>
+                                            </select>
+                    </div>
+                    <div class="input_wrapper_other padding border n30 select">
+                        <select required="" name="UnitIdaj" id="UnitIdaj">
+                            <option value="">الوحدة</option>
+                        </select>
+                    </div>
+        
+                
+        
+        
+                <div class="input_wrapper_other padding5  n50 select">
+                    <select required="" name="Workplace" id="Workplace">
+                        <option value="">مكان العمل</option>
+                    </select>
+                </div>
+                <div class="input_wrapper_other paddingl border n50 select">
+                    <select required="" name="TypeDeviceId" id="TypeDeviceId">
+                        <option value="">نوع الجهاز</option>
+                                            <option value="1">حاسب آلى</option>
+                                            <option value="2">طابعة</option>
+                                            <option value="3">شاشة</option>
+                                            <option value="4">جهاز ربط</option>
+                                            <option value="5">خرطوشة حبر</option>
+                                            <option value="6">ماسح ضوئى</option>
+                                            <option value="9">شريحة بيانات</option>
+                                            <option value="12">لوحة مفاتيح</option>
+                                    </select>
+                </div>
+                <div class="input_wrapper_other padding5  n50 select">
+                    <select required="" name="DeviceId" id="DeviceId">
+                        <option value="">اسم الموديل</option>
+                    </select>
+                </div>
+                <div class="input_wrapper n100 padding">
+                    <label class="">وصف المشكلة</label>
+                    <input required="" value="" type="text" name="Problem" id="Problem">
+                </div>
+                <div id="perId2" class="input_wrapper n100 padding">
+                    <label>الرقم القومى</label>
+                    <input required="" type="text" value="" name="perId" id="perId" maxlength="14">
+                </div>
+                <div id="perinfo">
+                </div>
+                <input class="no_float" type="submit" name="submit" value="حفظ">
+            </fieldset>
+        </form>
+
+        </div>
+      </div>
+    </div>
+  </div>

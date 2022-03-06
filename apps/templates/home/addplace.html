@@ -1,0 +1,130 @@
+
+{% extends "layouts/base-rtl.html" %}
+
+{%load crispy_forms_tags %} 
+{% block title %} وحدة {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+<div class="row ">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">
+            
+          </h4>
+        </div>
+        <div class="card-body">
+  
+          <h6 class="card-category">
+              بيانات الجهاز
+          </h6>
+          
+          <br />
+  
+          <form   method="POST" id="restrictForm" data-cities-url="{% url 'ajax_load_dists' %}"   data-unit-url="{% url 'ajax_load_unit' %}" data-marks-url="{% url 'ajax_load_marks' %}" data-models-url="{% url 'ajax_load_models' %}" >
+              {% csrf_token %}
+              {{ placeform|crispy }}
+            <input class="btn btn-primary btn-block" type="submit" value="حفظ">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+  
+    $("#id_govern").change(function () {
+      var url = $("#restrictForm").attr("data-cities-url");  
+      var governId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'govern': governId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_edara").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+
+        
+      });
+
+    });
+
+    
+  
+    $("#id_edara").change(function () {
+      var url = $("#restrictForm").attr("data-unit-url");  
+      var edaraId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'edara': edaraId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_unit").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+
+        
+      });
+
+    });
+
+    $("#id_device").change(function () {
+      var url = $("#restrictForm").attr("data-marks-url");  
+      var deviceId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'device': deviceId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_mark").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+
+        
+      });
+
+    });
+
+
+    $("#id_mark").change(function () {
+      var url = $("#restrictForm").attr("data-models-url");  
+      var markId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'mark': markId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_model").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+
+        
+      });
+
+    });
+</script>
+  {% endblock content %}
+
+  

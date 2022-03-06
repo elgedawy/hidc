@@ -1,0 +1,7 @@
+<div class="single_input">
+    <option value="">الماركة</option>
+    <select class="wide" style="display: none;">
+        {% for mark in marks %}
+        <option value="{{ mark.pk }}">{{ mark.name }}</option>
+        {% endfor %}
+</div>
