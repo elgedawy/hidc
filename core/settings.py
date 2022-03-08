@@ -23,13 +23,13 @@ SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 # load production server from .env
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'djangohealth.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'hidchealth.herokuapp.com']
 
 # Application definition
 
 INSTALLED_APPS = [
     'rest_framework',
-    'django.contrib.admin',
+    'django.contrib.admin', 
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
